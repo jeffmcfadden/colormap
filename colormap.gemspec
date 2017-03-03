@@ -16,5 +16,5 @@ Gem::Specification.new do |s|
   s.files = Dir["{lib}/**/*"] + ["MIT-LICENSE", "README.md"]
   s.test_files = Dir["test/**/*"]
   
-  
+  s.add_runtime_dependency "color", ["= 1.8"]
 end
