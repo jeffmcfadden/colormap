@@ -13,6 +13,8 @@ module Colormap
     end
   
     def color( value: value )
+      value = value.to_f
+      
       if value < self.waypoints[0][:value]
         value = self.waypoints[0][:value]
       elsif value > self.waypoints.last[:value]
@@ -25,7 +27,7 @@ module Colormap
       self.waypoints.each_with_index do |w,i|
         p = i
       
-        if value >= self.waypoints[i][:value] && value <= self.waypoints[i+1][:value]
+        if value >= self.waypoints[i][:value].to_f && value <= self.waypoints[i+1][:value].to_f
           n = i + 1
           break
         end
@@ -38,7 +40,7 @@ module Colormap
       prevColor = ::Color::RGB.from_html( self.waypoints[p][:color] )
       nextColor = ::Color::RGB.from_html( self.waypoints[n][:color] )
     
-      distance = (value - self.waypoints[p][:value]) / ( self.waypoints[n][:value] - self.waypoints[p][:value] )
+      distance = (value - self.waypoints[p][:value].to_f) / ( self.waypoints[n][:value].to_f - self.waypoints[p][:value].to_f )
     
       Rails.logger.info "distance: #{distance}"
     
