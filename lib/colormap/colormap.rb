@@ -32,17 +32,11 @@ module Colormap
           break
         end
       end
-      
-      Rails.logger.info "value: #{value}"
-      Rails.logger.info "p: #{p}"
-      Rails.logger.info "n: #{n}"
-    
+          
       prevColor = ::Color::RGB.from_html( self.waypoints[p][:color] )
       nextColor = ::Color::RGB.from_html( self.waypoints[n][:color] )
     
       distance = (value - self.waypoints[p][:value].to_f) / ( self.waypoints[n][:value].to_f - self.waypoints[p][:value].to_f )
-    
-      Rails.logger.info "distance: #{distance}"
     
       self.color_between( color_1:prevColor, color_2:nextColor, distance:distance )
     end
@@ -54,10 +48,7 @@ module Colormap
           
       h1 = color_1.hue; s1 = color_1.saturation; b1 = color_1.luminosity;
       h2 = color_2.hue; s2 = color_2.saturation; b2 = color_2.luminosity;
-    
-      Rails.logger.info "#{h1} #{s1} #{b1}"
-      Rails.logger.info "#{h2} #{s2} #{b2}"
-    
+        
       if h2 == 1.0
         h2 = 0.0
       end
